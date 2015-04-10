@@ -10,7 +10,7 @@ This is a framework to test web applications  made in C#
 
 Create a new CodeUITest class, if these message to Record new test appears just cancel it. Then heritance form WebApp class and you can start the testing.
 
-``
+`
 public class CodeUITest1: WebApp
 {
 	public CodeUITest1()
@@ -24,4 +24,8 @@ public class CodeUITest1: WebApp
 		FindControls<HtmlDiv>(".rc")[0].FindControls<HtmlHyperLink>().Where(a=>a.InnerTextContains("VerifyCode")).FirstOrDefault().Click();
 	} 
 }
-``
+`
+###Cache
+You can cache all the controls found in each page so the next time the test ui will be faster because the app will not search the control again.
+To do so just need to add an *AppSetting* into *App.config* 
+`<add key="CachePath" value="E:\SomeWhere\In\Your\Disk\cache.xml"/>`
