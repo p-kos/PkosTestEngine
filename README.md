@@ -11,18 +11,21 @@ This is a framework to test web applications  made in C#
 Create a new CodeUITest class, if these message to Record new test appears just cancel it. Then heritance form WebApp class and you can start the testing.
 
 `
-public class CodeUITest1: WebApp
+[CodedUITest]
+public class TestSample: WebApp
 {
-	public CodeUITest1()
+	public TestSample()
 	{
 	}
+
 	[TestMethod]
-	public void Test1()
+	public void TestSample1()
 	{
-		LaunchApp("http://google.com");
+		LaunchApp("https://www.google.com/");
 		FindControl<HtmlEdit>("#lst-ib").Text = "CodeUITest";
-		FindControls<HtmlDiv>(".rc")[0].FindControls<HtmlHyperLink>().Where(a=>a.InnerTextContains("VerifyCode")).FirstOrDefault().Click();
-	} 
+		FindControl<HtmlButton>("button[name='btnG']").Click();
+		FindControls<HtmlDiv>(".rc")[0].FindControls<HtmlHyperlink>().Where(a => a.InnerText.Contains("VerifyCode")).FirstOrDefault().Click();
+	}
 }
 `
 ###Cache
