@@ -22,6 +22,7 @@ If you have a test case just convert it to code.
 ###Syntax
 
 Create a new CodeUITest class, if the message to Record new test appears just cancel it. Then inherits from WebApp class and you can start the testing.
+The Internet Explorer must be opened before run test with the page (in this case https://github.com) opened, the reason is to not disturb to other pages in the browser, so the app will find that window.
 
 	[CodedUITest]
 	public class TestSample: WebApp
