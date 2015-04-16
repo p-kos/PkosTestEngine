@@ -8,6 +8,9 @@ It works for Internet Explorer for now.
 
 1. Visual Studio 2010 Premiun / Ultimate
 
+##Installation
+You can clone the code and compile or you can download the compiled dll here [https://dl.dropboxusercontent.com/u/32795617/PkosTestEngine.zip]() 
+
 ##Getting Started
 
 ###Test Case
@@ -108,3 +111,4 @@ Marco Zarate [[pkitos@gmail.com]()]
 This code was inspired on Damian Zapart sample
 [https://msdn.microsoft.com/en-us/magazine/dn532204.aspx]()
 
+##License
