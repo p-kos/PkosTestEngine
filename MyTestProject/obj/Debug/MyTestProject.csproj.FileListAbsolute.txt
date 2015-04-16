@@ -1,0 +1,8 @@
+C:\Users\u0151106\Documents\programs\PkosTestEngine\MyTestProject\bin\Debug\MyTestProject.dll
+C:\Users\u0151106\Documents\programs\PkosTestEngine\MyTestProject\bin\Debug\MyTestProject.pdb
+C:\Users\u0151106\Documents\programs\PkosTestEngine\MyTestProject\bin\Debug\PkosTestEngine.dll
+C:\Users\u0151106\Documents\programs\PkosTestEngine\MyTestProject\bin\Debug\PkosTestEngine.pdb
+C:\Users\u0151106\Documents\programs\PkosTestEngine\MyTestProject\obj\Debug\MyTestProject.csprojResolveAssemblyReference.cache
+C:\Users\u0151106\Documents\programs\PkosTestEngine\MyTestProject\obj\Debug\MyTestProject.dll
+C:\Users\u0151106\Documents\programs\PkosTestEngine\MyTestProject\obj\Debug\MyTestProject.pdb
+C:\Users\u0151106\Documents\programs\PkosTestEngine\MyTestProject\bin\Debug\MyTestProject.dll.config
