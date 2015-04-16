@@ -40,13 +40,13 @@ Create a new CodeUITest class, if the message to Record new test appears just ca
 		}
 	}
 
-###FindControl<T>(string selector)
+###FindControl&lt;T&gt;(string selector)
 You can find any kind of control using selector the following selectors:
 
 1. Id e.g. FindControl<HtmlEdit>("#text1")
 2. Class e.g FindControl<HtmlEdit>(".texts") // it will return the first entry for control with the class
 
-###FindControls<T>(string selector)
+###FindControls&lt;T&gt;(string selector)
 It returns a ReadOnlyCollection of the controls using the following selectors:
 
 1. **Id** Collection with only one control asuming there is just one object with the id
@@ -76,7 +76,7 @@ It returns a ReadOnlyCollection of the controls using the following selectors:
 It clicks over any kind of HtmlControl
 `FindControl<HtmlButton>("#search").Click();`
 
-####FindValues(Func< HtmlCell, bool > criteria)
+####FindValues(Func&lt;HtmlCell, bool&gt; criteria)
 It works only when the HtmlControl is a table (HtmlTable)
 `ReadOnlyCollection<HtmlRow> results = FindControl<HtmlTable>("#results").FindValues(td=>!string.IsNullOrEmpty && td.InnerText == "some text");`
 
@@ -90,8 +90,8 @@ To do so just need to add an *AppSetting* into **App.config**
 
 If the file does not exists the app will create it. If the setting does not exists the app will not cache the controls.
 ###Do not use cache
-If you want the app search the contorl even it is cached, you just need to delete the line where the control is saved in XML file.
-Or you can specify by code search the contorl even if is cached:
+If you want the app search the control even it is cached, you just need to delete the line where the control is saved in XML file.
+Or you can specify by code search app the control even if is cached:
 
 `FindControl<HtmlEdit>("#text1", true).Click();`
 
