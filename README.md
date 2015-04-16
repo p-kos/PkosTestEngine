@@ -37,7 +37,10 @@ The Internet Explorer must be opened before run test with the page (in this case
 			LaunchApp("https://www.google.com/");
 			FindControl<HtmlEdit>("#lst-ib").Text = "CodeUITest";
 			FindControl<HtmlButton>("button[name='btnG']").Click();
-			FindControls<HtmlDiv>(".rc")[0].FindControls<HtmlHyperlink>().Where(a => a.InnerText.Contains("VerifyCode")).FirstOrDefault().Click();
+			FindControls<HtmlDiv>(".rc")[0]
+				.FindControls<HtmlHyperlink>()
+				.Where(a => a.InnerText.Contains("VerifyCode"))
+				.FirstOrDefault().Click();
 		}
 	}
 
@@ -61,6 +64,7 @@ It returns a ReadOnlyCollection of the controls using the following selectors:
 3. **All objects**
 
 	`FindControls<HtmlHyperlink>()`
+
 	`FindControls<HtmlHyperLink>("a")`
 4. **By Attribute value**
 	
