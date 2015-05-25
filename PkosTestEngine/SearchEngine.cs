@@ -127,6 +127,10 @@ namespace PkosTestEngine
             {
                 return new List<string>() { "select" };
             }
+      if (typeof (HtmlCell).Name == T.Name)
+      {
+        return new List<string>(){"td"};
+      }
             return new List<string>();
         }
 
