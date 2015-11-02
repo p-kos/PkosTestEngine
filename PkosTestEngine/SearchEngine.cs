@@ -148,15 +148,23 @@ namespace PkosTestEngine
             {
                 throw new Exception(string.Format("Container null for selector:{0}", selector));
             }
-            if (selector.IndexOf('#') == 0)
+            if (selector.StartsWith("#") )
             {
                 return control.FindById<T>(selector.Trim().Substring(1));
             }
-            if (selector.IndexOf('.') == 0)
+            if (selector.StartsWith(".") )
             {
                 return control.FindFirstByCssClass<T>(selector.Trim().Substring(1));
             }
-            throw new AssertFailedException(string.Format("Could not find a control with \"{0}\"", selector));
+            T foundControl = control.FindControls<T>(selector.Trim()).FirstOrDefault();
+            if (foundControl == null)
+            {
+                throw new AssertFailedException(string.Format("Could not find a control with \"{0}\"", selector));
+            }
+            else
+            {
+                return foundControl;
+            }
         }
 
         /// <summary>
@@ -210,7 +218,7 @@ namespace PkosTestEngine
             WebControl webControl = new WebControl();
 
             #region #controlId
-            if (selector.IndexOf('#') == 0)
+            if (selector.StartsWith("#") )
             {
                 webControl = new WebControl() { Id = selector.Trim().Substring(1) };
                 return FindAll<T>(control, webControl);
@@ -218,7 +226,7 @@ namespace PkosTestEngine
             #endregion
 
             #region .controlClass
-            if (selector.IndexOf('.') == 0)
+            if (selector.StartsWith(".") )
             {
                 webControl = new WebControl() { Class = selector.Substring(1) };
                 return FindAll<T>(control, webControl);

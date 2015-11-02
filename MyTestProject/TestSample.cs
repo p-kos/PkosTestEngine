@@ -31,11 +31,8 @@ namespace MyTestProject
             LaunchApp("https://github.com/");
             FindControls<HtmlEdit>("input[name='q']").FirstOrDefault().Text = "PkosTestEngine";
             Keyboard.SendKeys("\n");
-            var a = FindControl<HtmlList>(".repo-list").FindControls<HtmlHyperlink>("a[href='/p-kos/PkosTestEngine']");
 
-            //var a = FindControls<HtmlHyperlink>("a[href='/p-kos/PkosTestEngine']");//.FirstOrDefault().Click();
-            //FindControl<HtmlButton>("button[name='btnG']").Click();
-            //FindControls<HtmlDiv>(".rc")[0].FindControls<HtmlHyperlink>().Where(a => a.InnerText.Contains("VerifyCode")).FirstOrDefault().Click();
+            FindControl<HtmlDiv>("#container").FindControl<HtmlHyperlink>("a[href='https://github.com/p-kos/PkosTestEngine']").Click();
         }
         
         #region Additional test attributes
