@@ -175,7 +175,7 @@ namespace PkosTestEngine
         /// <param name="className">class name</param>
         /// <param name="contains">If the control class name contains the className send or; false if needs to match exactly the same</param>
         /// <returns></returns>
-        public static ReadOnlyCollection<T> FindByCssClass<T>(this UITestControl control, string className, bool contains = true) where T : HtmlControl, new()
+        private static ReadOnlyCollection<T> FindByCssClass<T>(this UITestControl control, string className, bool contains = true) where T : HtmlControl, new()
         {
             if (control == null)
             {

@@ -78,12 +78,6 @@ namespace PkosTestEngine
         {
 
           Browser = new BrowserWindow( );
-          //_browser.SearchProperties[ UITestControl.PropertyNames.Name ] = HomeWindowName;
-          //_browser.SearchProperties[ UITestControl.PropertyNames.ClassName ] = "IEFrame";
-          //foreach ( string title in WindowTitles )
-          //{
-          //  _browser.WindowTitles.Add( title );
-          //}
 
         }
         return _browser;
@@ -144,62 +138,60 @@ namespace PkosTestEngine
     /// </summary>
     /// <param name="url">Initial url</param>
     /// <param name="startNewBrowser">Init a new browser instead of find the current</param>
-    public void LaunchApp( string url, bool startNewBrowser = false )
+    public void LaunchApp( string url, bool startNewBrowser = false  )
     {
-      if ( string.IsNullOrEmpty( url ) )
-      {
-        throw new AssertFailedException("url must be set.");
-      }
-      InitialUrl = url;
-
-      if ( startNewBrowser )
-      {
-        Process currentProcess = Process.Start( "IExplore.exe", InitialUrl );
-        SetForegroundWindow( currentProcess.MainWindowHandle );
-        _browser = BrowserWindow.FromProcess( currentProcess );
-        return;
-      }
-
-      var processes = Process.GetProcessesByName( "iexplore" );
-      var redirectUrl = new Uri( InitialUrl );
-      try
-      {
-        foreach ( Process currentProcess in processes )
+        if ( string.IsNullOrEmpty( url ) )
         {
-          if ( !string.IsNullOrEmpty( currentProcess.MainWindowTitle))//.Contains( "- Windows Internet Explorer" )) )
-          {
-            try
-            {
-              _browser = BrowserWindow.FromProcess( currentProcess );
+            throw new AssertFailedException( "url must be set." );
+        }
+        InitialUrl = url;
 
-              if ( _browser.Uri.Authority != redirectUrl.Authority ) // if there are more than one app opened.
-              {
-                continue;
-              }
-
-            }
-            catch
-            {
-              Browser = BrowserWindow.Locate( currentProcess.MainWindowTitle );
-            }
-
-            //_browser = BrowserWindow.Locate( currentProcess.MainWindowTitle );
-            if ( _browser.Uri.AbsoluteUri != InitialUrl )
-            {
-              Browser.NavigateToUrl( redirectUrl );
-            }
+        if ( startNewBrowser )
+        {
+            Process currentProcess = Process.Start( "IExplore.exe", InitialUrl );
             SetForegroundWindow( currentProcess.MainWindowHandle );
+            _browser = BrowserWindow.FromProcess( currentProcess );
             _launched = true;
             return;
-          }
         }
-        
-      }
-      catch ( Exception e )
-      {
-        throw new AssertFailedException( e.Message );
-      }
-      throw new AssertFailedException( "There is no Internet Explorer Opened" );
+
+        var processes = Process.GetProcessesByName( "iexplore" );
+        var redirectUrl = new Uri( InitialUrl );
+        try
+        {
+            foreach ( Process currentProcess in processes )
+            {
+                if ( !string.IsNullOrEmpty( currentProcess.MainWindowTitle ) )
+                {
+                    try
+                    {
+                        _browser = BrowserWindow.FromProcess( currentProcess );
+
+                        if ( _browser.Uri.Authority.Replace( "www.", "" ) == redirectUrl.Authority.Replace( "www.", "" ) ) // if there are more than one app opened.
+                        {
+
+                            if ( _browser.Uri.AbsoluteUri != InitialUrl )
+                            {
+                                Browser.NavigateToUrl( redirectUrl );
+                            }
+                            SetForegroundWindow( currentProcess.MainWindowHandle );
+                            _launched = true;
+                            return;
+                        }
+
+                    }
+                    catch
+                    {
+                        Browser = BrowserWindow.Locate( currentProcess.MainWindowTitle );
+                    }
+                }
+            }
+        }
+        catch ( Exception e )
+        {
+            throw new AssertFailedException( e.Message );
+        }
+        throw new AssertFailedException( "There is no Internet Explorer Opened" );
 
     }
 
@@ -266,7 +258,16 @@ namespace PkosTestEngine
       image.Save( fileName, format );
     }
 
-
+    /// <summary>
+    /// Close the application
+    /// </summary>
+    public void CloseApp( )
+    {
+        if ( _launched )
+        {
+            Browser.Close( );
+        }
+    }
     #endregion
 
     #region Additional test attributes
