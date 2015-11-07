@@ -28,11 +28,12 @@ namespace MyTestProject
         [TestMethod]
         public void TestSample1()
         {
-            LaunchApp("https://github.com/");
+            LaunchApp("https://github.com/", true);
             FindControls<HtmlEdit>("input[name='q']").FirstOrDefault().Text = "PkosTestEngine";
             Keyboard.SendKeys("\n");
 
             FindControl<HtmlDiv>("#container").FindControl<HtmlHyperlink>("a[href='https://github.com/p-kos/PkosTestEngine']").Click();
+            CloseApp( );
         }
         
         #region Additional test attributes
